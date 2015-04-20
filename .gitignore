@@ -1,3 +1,17 @@
+# Files to ignore
+SA.iws
+SA.ipr
+SA.iml
+README.txt
+MinecraftForge-License.txt
+MinecraftForge-Credits.txt
+LIECENSE-fml.txt
+gradlew
+forge-1.7.10-10.13.2.1232-changelog.txt
+CREDITS-fml.txt
+.project
+.classpath
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

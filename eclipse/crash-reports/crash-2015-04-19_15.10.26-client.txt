@@ -6,7 +6,7 @@ Description: Initializing game
 
 java.lang.IllegalArgumentException: The resource name is not valid
 	at net.minecraftforge.client.model.AdvancedModelLoader.loadModel(AdvancedModelLoader.java:55)
-	at awesomespider.lumina.Blocks.LuminaOrbRenderer.<init>(LuminaOrbRenderer.java:22)
+	at awesomespider.lumina.TileEntities.Renderers.LuminaOrbRenderer.<init>(LuminaOrbRenderer.java:22)
 	at awesomespider.lumina.ClientProxy.registerRenderers(ClientProxy.java:12)
 	at awesomespider.lumina.Lumina.init(Lumina.java:56)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -61,7 +61,7 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Stacktrace:
 	at net.minecraftforge.client.model.AdvancedModelLoader.loadModel(AdvancedModelLoader.java:55)
-	at awesomespider.lumina.Blocks.LuminaOrbRenderer.<init>(LuminaOrbRenderer.java:22)
+	at awesomespider.lumina.TileEntities.Renderers.LuminaOrbRenderer.<init>(LuminaOrbRenderer.java:22)
 	at awesomespider.lumina.ClientProxy.registerRenderers(ClientProxy.java:12)
 	at awesomespider.lumina.Lumina.init(Lumina.java:56)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

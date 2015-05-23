@@ -1,12 +1,11 @@
 package awesomespider.lumina.Blocks;
 
-import net.minecraft.block.Block;
+import awesomespider.lumina.TileEntities.TileEntityLuminaOrb;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.AdvancedModelLoader;
 
 /**
  * Created by Wyatt on 4/17/2015.
@@ -18,6 +17,7 @@ public class LuminaOrb extends BlockContainer{
 
         this.setBlockName("luminaOrb");
         this.setCreativeTab(CreativeTabs.tabMisc);
+        this.setLightLevel(2.5F);
     }
 
     @Override

@@ -10,7 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 /**
- * Created by Wyatt on 4/18/2015.
+ * Created by Awesome_Spider on 4/18/2015.
  */
 public class ClientProxy extends CommonProxy {
     public void registerRenderers(){

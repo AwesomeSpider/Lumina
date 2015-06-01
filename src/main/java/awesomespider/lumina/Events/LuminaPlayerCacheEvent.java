@@ -5,7 +5,7 @@ import cpw.mods.fml.common.eventhandler.Event;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
- * Created by Wyatt on 4/23/2015.
+ * Created by Awesome_Spider on 4/23/2015.
  */
 public class LuminaPlayerCacheEvent extends Event{
     public enum Action{

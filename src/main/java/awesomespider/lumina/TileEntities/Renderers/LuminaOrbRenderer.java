@@ -12,7 +12,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import org.lwjgl.opengl.GL11;
 
 /**
- * Created by Wyatt on 4/17/2015.
+ * Created by Awesome_Spider on 4/17/2015.
  */
 public class LuminaOrbRenderer extends TileEntitySpecialRenderer{
     ResourceLocation texture;

@@ -8,7 +8,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 /**
- * Created by Wyatt on 5/11/2015.
+ * Created by Awesome_Spider on 5/11/2015.
  */
 public class BlockLiquidLight extends BlockFluidBase{
     public BlockLiquidLight(Fluid fluid, Material material) {

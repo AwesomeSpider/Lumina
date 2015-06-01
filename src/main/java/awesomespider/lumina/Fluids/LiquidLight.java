@@ -3,7 +3,7 @@ package awesomespider.lumina.Fluids;
 import net.minecraftforge.fluids.Fluid;
 
 /**
- * Created by Wyatt on 5/11/2015.
+ * Created by Awesome_Spider on 5/11/2015.
  */
 public class LiquidLight extends Fluid {
     public LiquidLight(String fluidName) {

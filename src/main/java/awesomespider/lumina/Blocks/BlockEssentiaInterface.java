@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 /**
- * Created by Wyatt on 5/8/2015.
+ * Created by Awesome_Spider on 5/8/2015.
  */
 public class BlockEssentiaInterface extends Block {
     public BlockEssentiaInterface(Material material) {

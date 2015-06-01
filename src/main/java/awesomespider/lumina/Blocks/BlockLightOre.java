@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Wyatt on 5/11/2015.
+ * Created by Awesome_Spider on 5/11/2015.
  */
 public class BlockLightOre extends Block {
     //TODO Maybe rename it back to CrackedStoneLightOreThingy, I don't know. :)

@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Timer;
 
 /**
- * Created by Wyatt on 5/2/2015.
+ * Created by Awesome_Spider on 5/2/2015.
  */
 public class TileEntitySteamTurbine extends TileEntity {
     public int powerStored;

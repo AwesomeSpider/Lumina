@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 /**
- * Created by Wyatt on 4/17/2015.
+ * Created by Awesome_Spider on 4/17/2015.
  */
 public class LuminaOrb extends BlockContainer{
 

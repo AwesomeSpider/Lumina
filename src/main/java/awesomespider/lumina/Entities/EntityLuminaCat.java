@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 /**
- * Created by Wyatt on 5/15/2015.
+ * Created by Awesome_Spider on 5/15/2015.
  */
 public class EntityLuminaCat extends EntityTameable {
     public UUID ownerUUID;
@@ -32,7 +32,7 @@ public class EntityLuminaCat extends EntityTameable {
         this.tasks.addTask(6, new EntityAIOcelotAttack(this));
         this.tasks.addTask(7, new EntityAIWander(this, 0.8D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
-        this.targetTasks.addTask(1, new EntityAIAttackOnCollide(this, EntityCreeper.class));
+        //this.targetTasks.addTask(1, new EntityAIAttackOnCollide(this, EntityCreeper.class));
 //TODO Finish Lumina Cat
         ownerUUID = owner;
     }

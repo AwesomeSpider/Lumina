@@ -1,7 +1,7 @@
 package awesomespider.lumina.Exceptions;
 
 /**
- * Created by Wyatt on 5/17/2015.
+ * Created by Awesome_Spider on 5/17/2015.
  */
 public class InvalidEssentiaEntryException extends Exception {
     public InvalidEssentiaEntryException(String modid){

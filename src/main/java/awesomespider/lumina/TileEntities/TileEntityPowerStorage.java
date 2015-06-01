@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wyatt on 5/2/2015.
+ * Created by Awesome_Spider on 5/2/2015.
  */
 public class TileEntityPowerStorage extends TileEntity {
     int powerStored;

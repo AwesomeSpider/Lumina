@@ -10,7 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import java.util.Random;
 
 /**
- * Created by Wyatt on 5/17/2015.
+ * Created by Awesome_Spider on 5/17/2015.
  */
 public class WorldGeneration implements IWorldGenerator {
     WorldGenerator worldGenLightOre;

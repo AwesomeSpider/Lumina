@@ -1,17 +1,14 @@
 package awesomespider.lumina;
 
-import awesomespider.lumina.Api.EssentiaHelper;
+import awesomespider.lumina.Api.Essentia.EssentiaHelper;
 import awesomespider.lumina.Blocks.*;
 import awesomespider.lumina.Events.PlayerCacheEventHandler;
-import awesomespider.lumina.Exceptions.CorruptedJsonException;
 import awesomespider.lumina.Generation.WorldGeneration;
 import awesomespider.lumina.Guis.GuiHandler;
 import awesomespider.lumina.Items.*;
-import awesomespider.lumina.Utils.*;
-import cpw.mods.fml.common.Loader;
+import awesomespider.lumina.Api.Utils.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.ModClassLoader;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -23,13 +20,10 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.WorldEvent;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod(modid = Lumina.MODID, version = Lumina.VERSION, name = Lumina.NAME)
 public class Lumina {
@@ -60,7 +54,13 @@ public class Lumina {
 
     public static Block powerConverter;
 
+    public static Block ritualStone;
+    public static Block ritualSpellPowerStorage;
+    public static Block ritualItemHolder;
+
     //Items
+    public static Item lumicon;
+
     public static Item itemLuminaOrb;
 
     public static Item steamTurbineRotor;
@@ -73,9 +73,9 @@ public class Lumina {
 
     @EventHandler
     public void preinit(FMLPreInitializationEvent event) {
-       log =  event.getModLog();
+       log = event.getModLog();
        log.info(LOGPREFIX + " " + LangUtil.tranlate("log.preinit.text"));
-        dataFolder = event.getModConfigurationDirectory();
+        dataFolder = new File(event.getModConfigurationDirectory(), "/Lumina");
         configFile = event.getSuggestedConfigurationFile();
 
         try {
@@ -83,6 +83,8 @@ public class Lumina {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        KeyBindings.init();
 
         //Initialize Blocks
         luminaOrb = new LuminaOrb(Material.rock);
@@ -136,13 +138,11 @@ public class Lumina {
             e.printStackTrace();
         }
 
+        EssentiaHelper.addDefaults();
+
         try {
-            EssentiaHelper.readFromDisk();
-            EssentiaHelper.addDefaults();
-            EssentiaHelper.saveToDisk();
+            PlayerUtil.loadPlayersStarted();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CorruptedJsonException e) {
             e.printStackTrace();
         }
     }

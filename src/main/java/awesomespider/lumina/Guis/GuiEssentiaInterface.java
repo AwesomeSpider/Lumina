@@ -1,21 +1,16 @@
 package awesomespider.lumina.Guis;
 
-import awesomespider.lumina.Api.Essentia;
+import awesomespider.lumina.Api.Essentia.Essentia;
 import awesomespider.lumina.Lumina;
 import awesomespider.lumina.TileEntities.TileEntityEssentiaInterface;
-import awesomespider.lumina.Utils.TextureUtil;
+import awesomespider.lumina.Api.Utils.TextureUtil;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ContainerBeacon;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 import java.util.List;
 
 /**
- * Created by Wyatt on 5/7/2015.
+ * Created by Awesome_Spider on 5/7/2015.
  */
 public class GuiEssentiaInterface extends GuiScreen {
     int guiWidth = 176;

@@ -1,13 +1,13 @@
 package awesomespider.lumina.TileEntities;
 
-import awesomespider.lumina.Api.Essentia;
+import awesomespider.lumina.Api.Essentia.Essentia;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wyatt on 4/17/2015.
+ * Created by Awesome_Spider on 4/17/2015.
  */
 public class TileEntityLuminaOrb extends TileEntity {
     public float rotation = 0;

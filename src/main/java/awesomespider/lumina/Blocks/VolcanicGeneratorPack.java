@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 /**
- * Created by Wyatt on 5/6/2015.
+ * Created by Awesome_Spider on 5/6/2015.
  */
 public class VolcanicGeneratorPack extends BlockContainer {
     public VolcanicGeneratorPack(Material material) {

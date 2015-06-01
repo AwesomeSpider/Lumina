@@ -2,7 +2,7 @@ package awesomespider.lumina.Blocks;
 
 import awesomespider.lumina.Lumina;
 import awesomespider.lumina.TileEntities.TileEntitySteamTurbine;
-import awesomespider.lumina.Utils.UnitUtil;
+import awesomespider.lumina.Api.Utils.UnitUtil;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 /**
- * Created by Wyatt on 5/2/2015.
+ * Created by Awesome_Spider on 5/2/2015.
  */
 public class BlockSteamTurbine extends BlockContainer {
 

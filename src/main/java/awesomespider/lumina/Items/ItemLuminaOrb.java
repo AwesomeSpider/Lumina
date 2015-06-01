@@ -1,8 +1,7 @@
 package awesomespider.lumina.Items;
 
 import awesomespider.lumina.Lumina;
-import awesomespider.lumina.Utils.PlayerUtil;
-import cpw.mods.fml.common.registry.GameRegistry;
+import awesomespider.lumina.Api.Utils.PlayerUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,10 +12,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
- * Created by Wyatt on 4/21/2015.
+ * Created by Awesome_Spider on 4/21/2015.
  */
 public class ItemLuminaOrb extends Item{
     public ItemLuminaOrb(int maxStackSize, String name, String textureName){

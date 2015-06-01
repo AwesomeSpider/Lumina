@@ -1,13 +1,13 @@
 # Files to ignore
-SA.iws
-SA.ipr
-SA.iml
+Lumina.iws
+Lumina.ipr
+Lumina.iml
 README.txt
 MinecraftForge-License.txt
 MinecraftForge-Credits.txt
-LIECENSE-fml.txt
+LICENSE-fml.txt
 gradlew
-forge-1.7.10-10.13.2.1232-changelog.txt
+forge-1.7.10-10.13.2.1291-changelog,txt
 CREDITS-fml.txt
 .project
 .classpath

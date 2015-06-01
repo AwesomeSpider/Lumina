@@ -6,7 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
 /**
- * Created by Wyatt on 5/11/2015.
+ * Created by Awesome_Spider on 5/11/2015.
  */
 public class SolidLight extends Block {
 

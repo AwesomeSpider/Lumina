@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
 /**
- * Created by Wyatt on 4/25/2015.
+ * Created by Awesome_Spider on 4/25/2015.
  */
 public class LuminaOrbItemRenderer implements IItemRenderer {
     LuminaOrbRenderer tesr;

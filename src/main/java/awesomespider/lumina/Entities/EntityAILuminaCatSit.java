@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 
 /**
- * Created by Wyatt on 5/15/2015.
+ * Created by Awesome_Spider on 5/15/2015.
  *
  * A class created from an almost exact copy of the Minecraft class "EntityAIOcelotSit". For use with EntityLuminaCat.
  */

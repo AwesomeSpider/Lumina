@@ -5,7 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
 /**
- * Created by Wyatt on 5/7/2015.
+ * Created by Awesome_Spider on 5/7/2015.
  */
 public class TileEntityEssentiaInterface extends TileEntity{
     /* Timer used in checking blocks for lumina orb*/

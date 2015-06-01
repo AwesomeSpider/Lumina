@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wyatt on 5/12/2015.
+ * Created by Awesome_Spider on 5/12/2015.
  */
 public class TileEntityPowerConverter extends TileEntity {
     int powerPerTick = 1;

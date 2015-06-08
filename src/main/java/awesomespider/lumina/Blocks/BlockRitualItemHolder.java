@@ -33,7 +33,6 @@ public class BlockRitualItemHolder extends Block {
         super(material);
         this.setBlockName("ritualStone");
         this.setBlockTextureName(Lumina.MODID + ":ritualStone_itemHolder");
-        this.setBlockUnbreakable();
     }
 
     @Override

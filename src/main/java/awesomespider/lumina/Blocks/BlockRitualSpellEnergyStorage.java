@@ -33,7 +33,6 @@ public class BlockRitualSpellEnergyStorage extends Block {
         super(material);
         this.setBlockName("ritualStone");
         this.setBlockTextureName(Lumina.MODID + ":ritualStone_spellEnergyStorage");
-        this.setBlockUnbreakable();
     }
 
     @Override

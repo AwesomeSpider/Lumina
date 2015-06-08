@@ -15,11 +15,11 @@ import net.minecraft.world.World;
  * Created by Awesome_Spider on 5/24/2015.
  */
 public class BlockMasterRitualStone extends BlockContainer{
+
     public BlockMasterRitualStone(Material material) {
         super(material);
         this.setBlockName("masterRitualStone");
         this.setBlockTextureName(Lumina.MODID + ":masterRitualStone");
-        this.setBlockUnbreakable();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class BlockMasterRitualStone extends BlockContainer{
 
     @Override
     public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer player, int side, float hitX, float hitY, float hitZ){
-        return false; //TODO Activate the spell in this.
+        return false;
     }
 
     @Override

@@ -4,6 +4,7 @@ import awesomespider.lumina.Events.LuminaPlayerCacheEvent;
 import awesomespider.lumina.Lumina;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonWriter;
+import net.minecraft.block.BlockFire;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -69,64 +70,170 @@ public class PlayerUtil {
         return playersStartedList.contains(player.getUniqueID());
     }
 
-    public static void playPlayerStartAnimation(EntityPlayer player){
+    public static void playPlayerStartAnimation(EntityPlayer player) {
         //TODO Work on the animation of the player starting the journey
         player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "The air hums with energy."));
 
-        player.playSound("portal.portal", 10, 10);
+        player.playSound("portal.travel", 10, 0);
 
-        player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY, player.posZ));
-        player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ + 4));
-        player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY, player.posZ));
-        player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ - 4));
+        player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY - 1, player.posZ));
+        player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ + 4));
+        player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY - 1, player.posZ));
+        player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ - 4));
 
         //Taken from GuiIngame debug screen code (thanks to Ernio for helping me)
-        int i4 = MathHelper.floor_double((double) (Minecraft.getMinecraft().thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int i4 = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         String direction = Direction.directions[i4];
 
         ForgeDirection lookDirection = ForgeDirection.valueOf(direction);
 
-        switch(lookDirection){
-            case NORTH:
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ - 4));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ - 4));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ - 4));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ - 4));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ - 4));
+        if (lookDirection == ForgeDirection.NORTH) {
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ - 4));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ - 4));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ - 4));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ - 4));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ - 4));
 
-                player.worldObj.createExplosion((Entity)null, player.posX, player.posY, player.posZ - 4, 6, false);
-                player.worldObj.spawnEntityInWorld(new EntityItem(player.worldObj, player.posX, player.posY, player.posZ - 4, new ItemStack(Lumina.lumicon)));
-                break;
-            case EAST:
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY, player.posZ));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY, player.posZ));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY, player.posZ));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY, player.posZ));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY, player.posZ));
+            player.worldObj.setBlock((int) player.posX, (int) player.posY, (int) player.posZ - 4, Lumina.blockLightCrystal);
+            player.worldObj.setBlock((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, Lumina.blockLightCrystal);
 
-                player.worldObj.createExplosion((Entity)null, player.posX + 4, player.posY, player.posZ, 6, false);
-                player.worldObj.spawnEntityInWorld(new EntityItem(player.worldObj, player.posX + 4, player.posY, player.posZ, new ItemStack(Lumina.lumicon)));
-                break;
-            case SOUTH:
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ + 4));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ + 4));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ + 4));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ + 4));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY, player.posZ + 4));
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ - 4, 0, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, 0, 2);
 
-                player.worldObj.createExplosion((Entity)null, player.posX, player.posY, player.posZ + 4, 6, false);
-                player.worldObj.spawnEntityInWorld(new EntityItem(player.worldObj, player.posX, player.posY, player.posZ + 4, new ItemStack(Lumina.lumicon)));
-                break;
-            case WEST:
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY, player.posZ));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY, player.posZ));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY, player.posZ));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY, player.posZ));
-                player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY, player.posZ));
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ - 4, 1, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, 1, 2);
 
-                player.worldObj.createExplosion((Entity)null, player.posX - 4, player.posY, player.posZ, 6, false);
-                player.worldObj.spawnEntityInWorld(new EntityItem(player.worldObj, player.posX - 4, player.posY, player.posZ, new ItemStack(Lumina.lumicon)));
-                break;
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ - 4, 2, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, 2, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ - 4, 3, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, 3, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ - 4, 4, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, 4, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ - 4, 5, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, 5, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ - 4, 6, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, 6, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ - 4, 7, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ - 4, 7, 2);
+
+            EntityItem item = new EntityItem(player.worldObj, player.posX, player.posY + 4, player.posZ - 4, new ItemStack(Lumina.lumicon));
+            player.worldObj.spawnEntityInWorld(item);
+        } else if (lookDirection == ForgeDirection.EAST) {
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY - 1, player.posZ));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY - 1, player.posZ));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY - 1, player.posZ));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY - 1, player.posZ));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX + 4, player.posY - 1, player.posZ));
+
+            player.worldObj.setBlock((int) player.posX + 4, (int) player.posY, (int) player.posZ, Lumina.blockLightCrystal);
+            player.worldObj.setBlock((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, Lumina.blockLightCrystal);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 0, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 0, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 1, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 1, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 2, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 2, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 2, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 2, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 3, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 3, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 4, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 4, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 5, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 5, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 6, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 6, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY, (int) player.posZ, 7, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX + 4, (int) player.posY + 1, (int) player.posZ, 7, 2);
+
+            EntityItem item = new EntityItem(player.worldObj, player.posX + 4, player.posY + 4, player.posZ, new ItemStack(Lumina.lumicon));
+            player.worldObj.spawnEntityInWorld(item);
+        } else if (lookDirection == ForgeDirection.SOUTH) {
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ + 4));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ + 4));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ + 4));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ + 4));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX, player.posY - 1, player.posZ + 4));
+
+            player.worldObj.setBlock((int) player.posX, (int) player.posY, (int) player.posZ + 4, Lumina.blockLightCrystal);
+            player.worldObj.setBlock((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, Lumina.blockLightCrystal);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ + 4, 0, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, 0, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ + 4, 1, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, 1, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ + 4, 2, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, 2, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ + 4, 3, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, 3, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ + 4, 4, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, 4, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ + 4, 5, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, 5, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ + 4, 6, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, 6, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY, (int) player.posZ + 4, 7, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX, (int) player.posY + 1, (int) player.posZ + 4, 7, 2);
+
+            EntityItem item = new EntityItem(player.worldObj, player.posX, player.posY + 4, player.posZ + 4, new ItemStack(Lumina.lumicon));
+            player.worldObj.spawnEntityInWorld(item);
+        } else if (lookDirection == ForgeDirection.WEST) {
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY - 1, player.posZ));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY - 1, player.posZ));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY - 1, player.posZ));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY - 1, player.posZ));
+            player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, player.posX - 4, player.posY - 1, player.posZ));
+
+            player.worldObj.setBlock((int) player.posX - 4, (int) player.posY, (int) player.posZ, Lumina.blockLightCrystal);
+            player.worldObj.setBlock((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, Lumina.blockLightCrystal);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY, (int) player.posZ, 0, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, 0, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY, (int) player.posZ, 1, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, 1, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY, (int) player.posZ, 2, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, 2, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY, (int) player.posZ, 3, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, 3, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY, (int) player.posZ, 4, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, 4, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY, (int) player.posZ, 5, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, 5, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY, (int) player.posZ, 6, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, 6, 2);
+
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY, (int) player.posZ, 7, 2);
+            player.worldObj.setBlockMetadataWithNotify((int) player.posX - 4, (int) player.posY + 1, (int) player.posZ, 7, 2);
+
+            EntityItem item = new EntityItem(player.worldObj, player.posX - 4, player.posY + 4, player.posZ, new ItemStack(Lumina.lumicon));
+            player.worldObj.spawnEntityInWorld(item);
         }
     }
 

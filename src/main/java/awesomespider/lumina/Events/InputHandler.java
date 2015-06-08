@@ -2,6 +2,8 @@ package awesomespider.lumina.Events;
 
 import awesomespider.lumina.Api.Utils.PlayerUtil;
 import awesomespider.lumina.KeyBindings;
+import awesomespider.lumina.Lumina;
+import awesomespider.lumina.Packets.LumiconSpawnPacket;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import net.minecraft.client.Minecraft;
@@ -18,11 +20,7 @@ public class InputHandler {
         if(KeyBindings.start.isPressed()){
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
-            try {
-                PlayerUtil.startPlayer(player);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Lumina.network.sendToServer(new LumiconSpawnPacket(player.posX, player.posY, player.posZ));
         }
     }
 }

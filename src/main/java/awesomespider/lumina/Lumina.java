@@ -1,24 +1,33 @@
 package awesomespider.lumina;
 
 import awesomespider.lumina.Api.Essentia.EssentiaHelper;
+import awesomespider.lumina.Api.RitualRegistry;
+import awesomespider.lumina.Api.VersionChecker;
 import awesomespider.lumina.Blocks.*;
+import awesomespider.lumina.CreativeTabs.LuminaTab;
+import awesomespider.lumina.Events.InputHandler;
+import awesomespider.lumina.Events.ModVersionHandler;
 import awesomespider.lumina.Events.PlayerCacheEventHandler;
 import awesomespider.lumina.Generation.WorldGeneration;
 import awesomespider.lumina.Guis.GuiHandler;
 import awesomespider.lumina.Items.*;
 import awesomespider.lumina.Api.Utils.*;
+import awesomespider.lumina.Packets.LumiconSpawnPacket;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Logger;
 
@@ -43,6 +52,10 @@ public class Lumina {
     public static File dataFolder;
     public static File configFile;
 
+    public static SimpleNetworkWrapper network;
+
+    public static CreativeTabs luminaTab;
+
     //Blocks
     public static BlockContainer luminaOrb;
     public static BlockContainer steamTurbine;
@@ -58,8 +71,12 @@ public class Lumina {
     public static Block ritualSpellPowerStorage;
     public static Block ritualItemHolder;
 
+    public static Block blockLightCrystal;
+
     //Items
     public static Item lumicon;
+
+    public static Item impureLightIngot;
 
     public static Item itemLuminaOrb;
 
@@ -86,6 +103,10 @@ public class Lumina {
 
         KeyBindings.init();
 
+        network = NetworkRegistry.INSTANCE.newSimpleChannel("Lumina|Channel");
+
+        luminaTab = new LuminaTab("Lumina");
+
         //Initialize Blocks
         luminaOrb = new LuminaOrb(Material.rock);
         steamTurbine = new BlockSteamTurbine(Material.iron);
@@ -95,7 +116,13 @@ public class Lumina {
 
         powerConverter = new BlockPowerConverter(Material.iron);
 
+        blockLightCrystal = new BlockLightCrystal(Material.rock);
+
         //Initialize Items
+        lumicon = new ItemLumicon(1, "lumicon", MODID + ":lumicon");
+
+        impureLightIngot = new ItemImpureLightIngot(64, "impureLightIngot", MODID + ":impureLightIngot");
+
         itemLuminaOrb = new ItemLuminaOrb(1, "itemLuminaOrb", MODID + ":itemLuminaOrb");
         lightDust = new ItemLightDust(64, "lightDust", MODID + ":lightDust");
         lightGlowstoneBlend = new ItemLightGlowstoneBlend(64, "lightGlowstoneBlend", MODID + ":lightGlowstoneBlend");
@@ -108,30 +135,46 @@ public class Lumina {
         log.info(LOGPREFIX + " " + LangUtil.tranlate("log.init.text"));
         proxy.registerRenderers();
 
+        //Block
         GameRegistry.registerBlock(luminaOrb, "luminaOrb");
         GameRegistry.registerBlock(steamTurbine, "steamTurbine");
 
         GameRegistry.registerBlock(solidLight, "solidifyedLight");
         GameRegistry.registerBlock(crackedStoneLightOreThingy, "lightOre");
 
-        if (ModCompatibilityUtil.isThermalExpansionLoaded()) {
+        if (ModCompatibilityUtil.isThermalExpansionLoaded) {
             GameRegistry.registerBlock(powerConverter, "powerConverter");
         }
 
+        GameRegistry.registerBlock(blockLightCrystal, "blockLightCrystal");
+
+        //Items
+        GameRegistry.registerItem(lumicon, lumicon.getUnlocalizedName(), MODID);
+
+        GameRegistry.registerItem(impureLightIngot, impureLightIngot.getUnlocalizedName(), MODID);
+
         GameRegistry.registerItem(itemLuminaOrb, itemLuminaOrb.getUnlocalizedName(), MODID);
         GameRegistry.registerItem(lightDust, lightDust.getUnlocalizedName(), MODID);
+
+        //Recipes
+        GameRegistry.addSmelting(crackedStoneLightOreThingy, new ItemStack(impureLightIngot), 0.5F);
 
         GameRegistry.registerWorldGenerator(new WorldGeneration(), 0);
 
         MinecraftForge.EVENT_BUS.register(new PlayerCacheEventHandler());
         MinecraftForge.EVENT_BUS.register(new TimeUtil());
+        FMLCommonHandler.instance().bus().register(new InputHandler());
+        FMLCommonHandler.instance().bus().register(new ModVersionHandler());
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+
+        network.registerMessage(LumiconSpawnPacket.Handler.class, LumiconSpawnPacket.class, 0, Side.SERVER);
     }
 
     @EventHandler
     public void postinit(FMLPostInitializationEvent event){
         log.info(LOGPREFIX + " " + LangUtil.tranlate("log.postinit.text"));
+
         try {
             PlayerUtil.createPlayerCache();
         } catch (IOException e) {

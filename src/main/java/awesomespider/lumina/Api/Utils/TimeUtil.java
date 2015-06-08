@@ -19,7 +19,7 @@ public class TimeUtil {
     public static void addTask(TimerTask task){
         int length = tasks.length;
 
-        int current = length ++;
+        int current = length + 1;
 
         tasks[current] = task;
     }

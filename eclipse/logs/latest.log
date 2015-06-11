@@ -1,13 +1,13 @@
-[19:49:31] [main/INFO]: Logging in with username & password
-[19:49:48] [main/INFO]: Setting user: Awesome_Spider
-[19:49:50] [Client thread/INFO]: LWJGL Version: 2.9.1
-[19:50:00] [Twitch authenticator/ERROR]: Given twitch access token is invalid
-[19:50:29] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Lumina
-[19:50:31] [Sound Library Loader/INFO]: Sound engine started
-[19:50:35] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[19:50:35] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[19:50:36] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Lumina
-[19:50:36] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/items/itemLuminaOrb.png
+[20:25:12] [main/INFO]: Logging in with username & password
+[20:25:22] [main/INFO]: Setting user: Awesome_Spider
+[20:25:23] [Client thread/INFO]: LWJGL Version: 2.9.1
+[20:25:27] [Twitch authenticator/ERROR]: Given twitch access token is invalid
+[20:25:30] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Lumina
+[20:25:31] [Sound Library Loader/INFO]: Sound engine started
+[20:25:34] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[20:25:34] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[20:25:35] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Lumina
+[20:25:35] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/items/itemLuminaOrb.png
 java.io.FileNotFoundException: lumina:textures/items/itemLuminaOrb.png
 	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
 	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
@@ -35,7 +35,7 @@ java.io.FileNotFoundException: lumina:textures/items/itemLuminaOrb.png
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_07]
 	at java.lang.reflect.Method.invoke(Method.java:601) ~[?:1.7.0_07]
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:?]
-[19:50:36] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/items/impureLightIngot.png
+[20:25:35] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/items/impureLightIngot.png
 java.io.FileNotFoundException: lumina:textures/items/impureLightIngot.png
 	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
 	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
@@ -63,8 +63,8 @@ java.io.FileNotFoundException: lumina:textures/items/impureLightIngot.png
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_07]
 	at java.lang.reflect.Method.invoke(Method.java:601) ~[?:1.7.0_07]
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:?]
-[19:50:36] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[19:50:36] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/blocks/steam_turbine_active.png
+[20:25:35] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[20:25:35] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/blocks/steam_turbine_active.png
 java.io.FileNotFoundException: lumina:textures/blocks/steam_turbine_active.png
 	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
 	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
@@ -92,7 +92,7 @@ java.io.FileNotFoundException: lumina:textures/blocks/steam_turbine_active.png
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_07]
 	at java.lang.reflect.Method.invoke(Method.java:601) ~[?:1.7.0_07]
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:?]
-[19:50:36] [Client thread/ERROR]: Using missing texture, unable to load minecraft:textures/blocks/MISSING_ICON_BLOCK_165_luminaOrb.png
+[20:25:35] [Client thread/ERROR]: Using missing texture, unable to load minecraft:textures/blocks/MISSING_ICON_BLOCK_165_luminaOrb.png
 java.io.FileNotFoundException: minecraft:textures/blocks/MISSING_ICON_BLOCK_165_luminaOrb.png
 	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
 	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
@@ -120,32 +120,25 @@ java.io.FileNotFoundException: minecraft:textures/blocks/MISSING_ICON_BLOCK_165_
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_07]
 	at java.lang.reflect.Method.invoke(Method.java:601) ~[?:1.7.0_07]
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:?]
-[19:50:37] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[19:50:38] [Sound Library Loader/INFO]: Sound engine started
-[19:51:05] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[19:51:05] [Server thread/INFO]: Generating keypair
-[19:51:05] [Server thread/INFO]: Preparing start region for level 0
-[19:51:06] [Server thread/INFO]: Preparing spawn area: 41%
-[19:51:07] [Server thread/INFO]: Changing view distance to 8, from 10
-[19:51:08] [Server thread/INFO]: Awesome_Spider[local:E:505673e5] logged in with entity id 353 at (129.5774061643263, 67.0, 275.9228466490884)
-[19:51:08] [Server thread/INFO]: Awesome_Spider joined the game
-[19:51:12] [Server thread/ERROR]: Encountered an unexpected exception
-net.minecraft.util.ReportedException: Ticking memory connection
-	at net.minecraft.network.NetworkSystem.networkTick(NetworkSystem.java:198) ~[NetworkSystem.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:726) ~[MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:614) ~[MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:118) ~[IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:485) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer$2.run(MinecraftServer.java:752) [MinecraftServer$2.class:?]
-Caused by: java.lang.NullPointerException
-	at cpw.mods.fml.common.network.internal.FMLProxyPacket.processPacket(FMLProxyPacket.java:110) ~[FMLProxyPacket.class:?]
-	at net.minecraft.network.NetworkManager.processReceivedPackets(NetworkManager.java:241) ~[NetworkManager.class:?]
-	at net.minecraft.network.NetworkSystem.networkTick(NetworkSystem.java:182) ~[NetworkSystem.class:?]
-	... 5 more
-[19:51:12] [Server thread/ERROR]: This crash report has been saved to: C:\Users\Andersen Family\Documents\Wyatt Andersen\NewMods\Lumina\eclipse\.\crash-reports\crash-2015-06-07_19.51.12-server.txt
-[19:51:12] [Server thread/INFO]: Stopping server
-[19:51:12] [Server thread/INFO]: Saving players
-[19:51:12] [Server thread/INFO]: Saving worlds
-[19:51:12] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
-[19:51:12] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
-[19:51:12] [Server thread/INFO]: Saving chunks for level 'Test World'/The End
+[20:25:35] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[20:25:36] [Sound Library Loader/INFO]: Sound engine started
+[20:25:42] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[20:25:42] [Server thread/INFO]: Generating keypair
+[20:25:43] [Server thread/INFO]: Preparing start region for level 0
+[20:25:44] [Server thread/INFO]: Preparing spawn area: 65%
+[20:25:45] [Server thread/INFO]: Changing view distance to 8, from 10
+[20:25:45] [Server thread/INFO]: Awesome_Spider[local:E:e35a30a8] logged in with entity id 333 at (129.5774061643263, 67.0, 275.9228466490884)
+[20:25:45] [Server thread/INFO]: Awesome_Spider joined the game
+[20:25:49] [Client thread/INFO]: [CHAT] §bYour current Lumina installation is out of date. A new version §bwas found: [§9Build 0.0.1§b] The first build. You can download this §bat http://www.example.com.
+[20:25:49] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4551ms behind, skipping 91 tick(s)
+[20:26:48] [Server thread/INFO]: Saving and pausing game...
+[20:26:48] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
+[20:26:48] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
+[20:26:48] [Server thread/INFO]: Saving chunks for level 'Test World'/The End
+[20:26:49] [Server thread/INFO]: Stopping server
+[20:26:49] [Server thread/INFO]: Saving players
+[20:26:49] [Server thread/INFO]: Saving worlds
+[20:26:49] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
+[20:26:49] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
+[20:26:49] [Server thread/INFO]: Saving chunks for level 'Test World'/The End
+[20:26:51] [Client thread/INFO]: Stopping!

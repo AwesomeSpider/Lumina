@@ -12,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by Awesome_Spider on 6/1/2015.
@@ -29,10 +30,12 @@ public class VersionChecker {
     static void checkVersion() throws IOException {
         InputStream in = new URL(url).openStream();
 
-        version = IOUtils.readLines(in).get(0);
-        type = IOUtils.readLines(in).get(1);
-        mainFeature = IOUtils.readLines(in).get(2);
-        link = IOUtils.readLines(in).get(3);
+        List<String> lines = IOUtils.readLines(in);
+
+        version = lines.get(0);
+        type = lines.get(1);
+        mainFeature = lines.get(2);
+        link = lines.get(3);
     }
 
     public static String getVersion(){
@@ -50,8 +53,8 @@ public class VersionChecker {
 
         if (!Lumina.VERSION.equals(version)){
             result = EnumChatFormatting.AQUA + "Your current Lumina installation is out of date. " +
-                    "A new version was found: [" + EnumChatFormatting.BLUE + type + " " + version + "] " +
-                    mainFeature + ". You can download this at " + link + ".";
+                    "A new version " + EnumChatFormatting.AQUA + "was found: [" + EnumChatFormatting.BLUE + type + " " + version + EnumChatFormatting.AQUA + "] " +
+                    mainFeature + ". You can download this " + EnumChatFormatting.AQUA + "at " + link + ".";
 
             player.addChatComponentMessage(new ChatComponentText(result));
         }

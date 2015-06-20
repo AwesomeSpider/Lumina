@@ -1,13 +1,13 @@
-[20:03:34] [main/INFO]: Logging in with username & password
-[20:03:44] [main/INFO]: Setting user: Awesome_Spider
-[20:03:45] [Client thread/INFO]: LWJGL Version: 2.9.1
-[20:03:50] [Twitch authenticator/ERROR]: Given twitch access token is invalid
-[20:03:51] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Lumina
-[20:03:52] [Sound Library Loader/INFO]: Sound engine started
-[20:03:54] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[20:03:55] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[20:03:55] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Lumina
-[20:03:55] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/items/itemLuminaOrb.png
+[19:59:06] [main/INFO]: Logging in with username & password
+[19:59:16] [main/INFO]: Setting user: Awesome_Spider
+[19:59:18] [Client thread/INFO]: LWJGL Version: 2.9.1
+[19:59:23] [Twitch authenticator/ERROR]: Given twitch access token is invalid
+[19:59:25] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Lumina
+[19:59:26] [Sound Library Loader/INFO]: Sound engine started
+[19:59:29] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[19:59:29] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[19:59:29] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Lumina
+[19:59:29] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/items/itemLuminaOrb.png
 java.io.FileNotFoundException: lumina:textures/items/itemLuminaOrb.png
 	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
 	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
@@ -35,7 +35,7 @@ java.io.FileNotFoundException: lumina:textures/items/itemLuminaOrb.png
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_07]
 	at java.lang.reflect.Method.invoke(Method.java:601) ~[?:1.7.0_07]
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:?]
-[20:03:55] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/items/impureLightIngot.png
+[19:59:29] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/items/impureLightIngot.png
 java.io.FileNotFoundException: lumina:textures/items/impureLightIngot.png
 	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
 	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
@@ -63,8 +63,8 @@ java.io.FileNotFoundException: lumina:textures/items/impureLightIngot.png
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_07]
 	at java.lang.reflect.Method.invoke(Method.java:601) ~[?:1.7.0_07]
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:?]
-[20:03:55] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[20:03:55] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/blocks/steam_turbine_active.png
+[19:59:29] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[19:59:30] [Client thread/ERROR]: Using missing texture, unable to load lumina:textures/blocks/steam_turbine_active.png
 java.io.FileNotFoundException: lumina:textures/blocks/steam_turbine_active.png
 	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
 	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
@@ -92,7 +92,7 @@ java.io.FileNotFoundException: lumina:textures/blocks/steam_turbine_active.png
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_07]
 	at java.lang.reflect.Method.invoke(Method.java:601) ~[?:1.7.0_07]
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:?]
-[20:03:55] [Client thread/ERROR]: Using missing texture, unable to load minecraft:textures/blocks/MISSING_ICON_BLOCK_165_luminaOrb.png
+[19:59:30] [Client thread/ERROR]: Using missing texture, unable to load minecraft:textures/blocks/MISSING_ICON_BLOCK_165_luminaOrb.png
 java.io.FileNotFoundException: minecraft:textures/blocks/MISSING_ICON_BLOCK_165_luminaOrb.png
 	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
 	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
@@ -120,28 +120,17 @@ java.io.FileNotFoundException: minecraft:textures/blocks/MISSING_ICON_BLOCK_165_
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_07]
 	at java.lang.reflect.Method.invoke(Method.java:601) ~[?:1.7.0_07]
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:?]
-[20:03:56] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[20:03:56] [Sound Library Loader/INFO]: Sound engine started
-[20:04:25] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[20:04:25] [Server thread/INFO]: Generating keypair
-[20:04:26] [Server thread/INFO]: Preparing start region for level 0
-[20:04:27] [Server thread/INFO]: Preparing spawn area: 59%
-[20:04:27] [Server thread/INFO]: Changing view distance to 8, from 10
-[20:04:28] [Server thread/INFO]: Awesome_Spider[local:E:7a43cf53] logged in with entity id 335 at (127.86791851207965, 67.0, 275.24457995231097)
-[20:04:28] [Server thread/INFO]: Awesome_Spider joined the game
-[20:04:36] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 8284ms behind, skipping 165 tick(s)
-[20:04:36] [Server thread/INFO]: Saving and pausing game...
-[20:04:36] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
-[20:04:36] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
-[20:04:36] [Server thread/INFO]: Saving chunks for level 'Test World'/The End
-[20:06:55] [Server thread/INFO]: Saving and pausing game...
-[20:06:55] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
-[20:06:55] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
-[20:06:55] [Server thread/INFO]: Saving chunks for level 'Test World'/The End
-[20:06:56] [Server thread/INFO]: Stopping server
-[20:06:56] [Server thread/INFO]: Saving players
-[20:06:56] [Server thread/INFO]: Saving worlds
-[20:06:56] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
-[20:06:56] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
-[20:06:56] [Server thread/INFO]: Saving chunks for level 'Test World'/The End
-[20:06:57] [Client thread/INFO]: Stopping!
+[19:59:30] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[19:59:31] [Sound Library Loader/INFO]: Sound engine started
+[19:59:38] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[19:59:38] [Server thread/INFO]: Generating keypair
+[19:59:39] [Server thread/INFO]: Preparing start region for level 0
+[19:59:40] [Server thread/INFO]: Preparing spawn area: 68%
+[19:59:41] [Server thread/INFO]: Changing view distance to 8, from 10
+[19:59:41] [Server thread/INFO]: Awesome_Spider[local:E:6e862dd9] logged in with entity id 336 at (130.4632149168205, 68.0, 276.3597230523028)
+[19:59:41] [Server thread/INFO]: Awesome_Spider joined the game
+[19:59:46] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4766ms behind, skipping 95 tick(s)
+[20:00:22] [Server thread/INFO]: Saving and pausing game...
+[20:00:22] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
+[20:00:22] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
+[20:00:22] [Server thread/INFO]: Saving chunks for level 'Test World'/The End

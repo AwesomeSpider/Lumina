@@ -38,4 +38,18 @@ public class RitualRegistry {
 
         return result;
     }
+
+    public Ritual getRitual(String name){
+        Ritual result = null;
+
+        for (Ritual ritual : ritualList){
+            if (ritual.name.equals(name)){
+                result = ritual;
+            } else {
+                result = null;
+            }
+        }
+
+        return result;
+    }
 }

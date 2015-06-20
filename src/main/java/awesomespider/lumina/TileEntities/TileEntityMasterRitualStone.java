@@ -10,10 +10,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockGlowstone;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
@@ -26,12 +28,16 @@ import java.util.List;
  */
 public class TileEntityMasterRitualStone extends TileEntity {
     private boolean formed = false;
+    private int ticksFormed = 0;
     private int tier = 0;
 
     @Override
     public void updateEntity() {
         checkMultiblock();
-        updateTextures();
+
+        if (formed){
+            ticksFormed ++;
+        }
     }
 
     public void checkMultiblock(){
@@ -98,10 +104,27 @@ public class TileEntityMasterRitualStone extends TileEntity {
                 tier = 2;
                 formed = true;
             }
-        } else if (b1 instanceof BlockRitualSpellEnergyStorage && b2 instanceof BlockRitualSpellEnergyStorage && b3 instanceof BlockRitualSpellEnergyStorage && b4 instanceof BlockRitualSpellEnergyStorage &&
-                    b5 instanceof BlockRitualItemHolder && b6 instanceof BlockRitualItemHolder && b7 instanceof BlockRitualItemHolder && b8 instanceof BlockRitualItemHolder){
+        } else if (b1 instanceof BlockRitualStone && b2 instanceof BlockRitualStone && b3 instanceof BlockRitualStone && b4 instanceof BlockRitualStone &&
+                    b5 instanceof BlockRitualStone && b6 instanceof BlockRitualStone && b7 instanceof BlockRitualStone && b8 instanceof BlockRitualStone){
             tier = 1;
             formed = true;
+
+            //Edges
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord - 1, 1, 2);
+            worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord, zCoord, 2, 2);
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord + 1, 3, 2);
+            worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord, zCoord, 4, 2);
+
+            //Corners
+            worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord, zCoord - 1, 5, 2);
+            worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord, zCoord + 1, 6, 2);
+            worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord, zCoord + 1, 7, 2);
+            worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord, zCoord - 1, 8, 2);
+
+            if (ticksFormed == 1){
+                worldObj.addWeatherEffect(new EntityLightningBolt(worldObj, xCoord + 1, yCoord, zCoord + 1));
+                worldObj.addWeatherEffect(new EntityLightningBolt(worldObj, xCoord - 1, yCoord, zCoord - 1));
+            }
         } else {
             tier = 0;
             formed = false;
@@ -111,10 +134,10 @@ public class TileEntityMasterRitualStone extends TileEntity {
     public void updateTextures(){
         if (formed) {
             if (tier == 1) {
-                worldObj.addWeatherEffect(new EntityLightningBolt(worldObj, xCoord + 1, yCoord, zCoord + 1));
-                worldObj.addWeatherEffect(new EntityLightningBolt(worldObj, xCoord - 1, yCoord, zCoord - 1));
+                //worldObj.addWeatherEffect(new EntityLightningBolt(worldObj, xCoord + 1, yCoord, zCoord + 1));
+                //worldObj.addWeatherEffect(new EntityLightningBolt(worldObj, xCoord - 1, yCoord, zCoord - 1));
 
-                //Edges
+                /*//Edges
                 worldObj.setBlock(xCoord, yCoord, zCoord - 1, Lumina.ritualSpellPowerStorage);
                 worldObj.setBlock(xCoord + 1, yCoord, zCoord, Lumina.ritualSpellPowerStorage);
                 worldObj.setBlock(xCoord, yCoord, zCoord + 1, Lumina.ritualSpellPowerStorage);
@@ -124,7 +147,7 @@ public class TileEntityMasterRitualStone extends TileEntity {
                 worldObj.setBlock(xCoord + 1, yCoord, zCoord - 1, Lumina.ritualItemHolder);
                 worldObj.setBlock(xCoord + 1, yCoord, zCoord + 1, Lumina.ritualItemHolder);
                 worldObj.setBlock(xCoord - 1, yCoord, zCoord + 1, Lumina.ritualItemHolder);
-                worldObj.setBlock(xCoord - 1, yCoord, zCoord - 1, Lumina.ritualItemHolder);
+                worldObj.setBlock(xCoord - 1, yCoord, zCoord - 1, Lumina.ritualItemHolder);*/
 
                 //Edges
                 worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord - 1, 1, 2);
@@ -195,5 +218,90 @@ public class TileEntityMasterRitualStone extends TileEntity {
 
     public Ritual getRitual(ItemStack stack1, ItemStack stack2, ItemStack stack3, ItemStack stack4){
         return RitualRegistry.instance().getRitual(stack1, stack2, stack3, stack4);
+    }
+
+    public Ritual getRitual(String ritualName){
+        return RitualRegistry.instance().getRitual(ritualName);
+    }
+
+    public void drawGlyphs(String ritualName){
+        Ritual ritual = getRitual(ritualName);
+
+        if (ritual.tier == 1){
+            //Edges
+            //Check if the blocks above the ritual stones are air or not.
+            // If they are, it will draw the glyphs.
+            // If not, it will get the client-side player and send him/her a message saying the blocks are obstructed.
+            if (worldObj.getBlock(xCoord, yCoord + 1, zCoord - 1) instanceof BlockAir) {
+                worldObj.setBlock(xCoord, yCoord + 1, zCoord - 1, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord - 1, worldObj.rand.nextInt(13), 2);
+            } else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Could not draw the glyphs because the space was obstructed. Please break the blocks one block above the ritual stones and try again."));
+            }
+            if (worldObj.getBlock(xCoord + 1, yCoord + 1, zCoord) instanceof BlockAir){
+                worldObj.setBlock(xCoord + 1, yCoord + 1, zCoord, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord + 1, zCoord, worldObj.rand.nextInt(13), 2);
+            } else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Could not draw the glyphs because the space was obstructed. Please break the blocks one block above the ritual stones and try again."));
+            }
+            if (worldObj.getBlock(xCoord, yCoord + 1, zCoord + 1) instanceof BlockAir){
+                worldObj.setBlock(xCoord, yCoord + 1, zCoord + 1, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord + 1, worldObj.rand.nextInt(13), 2);
+            } else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Could not draw the glyphs because the space was obstructed. Please break the blocks one block above the ritual stones and try again."));
+            }
+            if (worldObj.getBlock(xCoord - 1, yCoord + 1, zCoord) instanceof BlockAir){
+                worldObj.setBlock(xCoord - 1, yCoord + 1, zCoord, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord + 1, zCoord, worldObj.rand.nextInt(13), 2);
+            } else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Could not draw the glyphs because the space was obstructed. Please break the blocks one block above the ritual stones and try again."));
+            }
+
+            //Corners
+            //Check if the blocks above the ritual stones are air or not.
+            // If they are, it will draw the glyphs.
+            // If not, it will get the client-side player and send him/her a message saying the blocks are obstructed.
+            if (worldObj.getBlock(xCoord + 1, yCoord + 1, zCoord - 1) instanceof BlockAir){
+                worldObj.setBlock(xCoord + 1, yCoord + 1, zCoord - 1, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord + 1, zCoord - 1, worldObj.rand.nextInt(13), 2);
+            } else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Could not draw the glyphs because the space was obstructed. Please break the blocks one block above the ritual stones and try again."));
+            }
+            if (worldObj.getBlock(xCoord + 1, yCoord + 1, zCoord + 1) instanceof BlockAir){
+                worldObj.setBlock(xCoord + 1, yCoord + 1, zCoord + 1, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord + 1, zCoord + 1, worldObj.rand.nextInt(13), 2);
+            } else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Could not draw the glyphs because the space was obstructed. Please break the blocks one block above the ritual stones and try again."));
+            }
+            if (worldObj.getBlock(xCoord - 1, yCoord + 1, zCoord + 1) instanceof BlockAir){
+                worldObj.setBlock(xCoord - 1, yCoord + 1, zCoord + 1, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord + 1, zCoord + 1, worldObj.rand.nextInt(13), 2);
+            } else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Could not draw the glyphs because the space was obstructed. Please break the blocks one block above the ritual stones and try again."));
+            }
+            if (worldObj.getBlock(xCoord - 1, yCoord + 1, zCoord - 1) instanceof BlockAir){
+                worldObj.setBlock(xCoord - 1, yCoord + 1, zCoord - 1, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord + 1, zCoord - 1, worldObj.rand.nextInt(13), 2);
+            } else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Could not draw the glyphs because the space was obstructed. Please break the blocks one block above the ritual stones and try again."));
+            }
+
+            //Center
+            //You get the idea of what this does. If not, look above in the comments I left for you. ;)
+            if(worldObj.getBlock(xCoord, yCoord + 1, zCoord) instanceof BlockAir){
+                worldObj.setBlock(xCoord, yCoord + 1, zCoord, Lumina.glyph);
+                worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, ritual.mainGlyph, 2);
+            }
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt){
+        super.writeToNBT(nbt);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt){
+        super.readFromNBT(nbt);
     }
 }

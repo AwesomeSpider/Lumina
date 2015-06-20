@@ -53,25 +53,25 @@ public class BlockRitualStone extends Block{
             return icons[meta];
         } else if (side == 2) {
             if (meta > 0){
-                return icons[10];
+                return icons[9];
             } else {
                 return icons[0];
             }
         } else if (side == 3) {
             if (meta > 0){
-                return icons[10];
+                return icons[9];
             } else {
                 return icons[0];
             }
         } else if (side == 4) {
             if (meta > 0){
-                return icons[10];
+                return icons[9];
             } else {
                 return icons[0];
             }
         } else if (side == 5) {
             if (meta > 0){
-                return icons[10];
+                return icons[9];
             } else {
                 return icons[0];
             }

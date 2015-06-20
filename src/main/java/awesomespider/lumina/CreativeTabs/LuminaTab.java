@@ -3,6 +3,7 @@ package awesomespider.lumina.CreativeTabs;
 import awesomespider.lumina.Lumina;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -16,7 +17,7 @@ public class LuminaTab extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return null;
+        return Items.blaze_rod;
     }
 
     public void addItem(Item item){

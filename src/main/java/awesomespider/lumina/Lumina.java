@@ -69,9 +69,12 @@ public class Lumina {
 
     public static Block powerConverter;
 
+    public static Block masterRitualStone;
     public static Block ritualStone;
     public static Block ritualSpellPowerStorage;
     public static Block ritualItemHolder;
+
+    public static Block glyph;
 
     public static Block blockLightCrystal;
 
@@ -116,6 +119,13 @@ public class Lumina {
         solidLight = new SolidLight(Material.rock);
         crackedStoneLightOreThingy = new BlockLightOre(Material.rock);
 
+        masterRitualStone = new BlockMasterRitualStone(Material.rock);
+        ritualStone = new BlockRitualStone(Material.rock);
+        ritualSpellPowerStorage = new BlockRitualSpellEnergyStorage(Material.rock);
+        ritualItemHolder = new BlockRitualItemHolder(Material.rock);
+
+        glyph = new BlockGlyph(Material.cloth);
+
         powerConverter = new BlockPowerConverter(Material.iron);
 
         blockLightCrystal = new BlockLightCrystal(Material.rock);
@@ -149,6 +159,13 @@ public class Lumina {
         }
 
         GameRegistry.registerBlock(blockLightCrystal, "blockLightCrystal");
+
+        GameRegistry.registerBlock(masterRitualStone, "masterRitualStone");
+        GameRegistry.registerBlock(ritualStone, "ritualStone");
+        GameRegistry.registerBlock(ritualSpellPowerStorage, "ritualSpellPowerStorage");
+        GameRegistry.registerBlock(ritualItemHolder, "ritualItemHolder");
+
+        registerCreativeTabBlocks();
 
         //Items
         GameRegistry.registerItem(lumicon, lumicon.getUnlocalizedName(), MODID);
@@ -190,5 +207,16 @@ public class Lumina {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void registerCreativeTabItems(){
+
+    }
+
+    public void registerCreativeTabBlocks(){
+        LuminaTab luminaTab2 = (LuminaTab) luminaTab;
+
+        luminaTab2.addBlock(ritualStone);
+        luminaTab2.addBlock(masterRitualStone);
     }
 }
